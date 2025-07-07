@@ -197,7 +197,7 @@ async function startServer() {
     try {
         await initializeDatabase();
         app.listen(port, ipAddress, () => {
-            console.log(`Server running at http://${ipAddress}:${port}`);
+            console.log(`Server running at http://13.201.122.255:${port}`);
         });
     } catch (err) {
         console.error('Failed to start server:', err.stack);
