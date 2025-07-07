@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-task
+    ports:
+      - "5021:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: new_employee_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql.sql:/docker-entrypoint-initdb.d/sql.sql:ro
+    networks:
+      - todo_net
+
+  backend:
+    container_name: Backend-task
+    build: ./Backend
+    ports:
+      - "3053:3053"
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: admin123
+      DB_NAME: new_employee_db
+      DB_HOST: postgres
+      DB_PORT: 5432
+      PORT: 3053
+      HOST: 0.0.0.0
+    depends_on:
+      - postgres
+    networks:
+      - todo_net
+
+  frontend:
+    container_name: Frontend1
+    build: ./Frontend
+    ports:
+      - "8071:80"
+    networks:
+      - todo_net
+
+  hr_page:
+    container_name: HR_page1
+    build: ./HR_Page
+    ports:
+      - "8072:80"
+    networks:
+      - todo_net
+
+volumes:
+  postgres_data:
+
+networks:
+  todo_net:
+    driver: bridge
+
