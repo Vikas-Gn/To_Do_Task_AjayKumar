@@ -6,7 +6,7 @@ const path = require('path');
 const multer = require('multer');
 
 const app = express();
-const port = process.env.PORT || 3053; // Use PORT from .env or default to 3000
+const port = process.env.PORT || 3098; // Use PORT from .env or default to 3000
 const ipAddress = process.env.HOST || '0.0.0.0'; // Use HOST from .env or default to all interfaces
 
 // PostgreSQL connection configuration
@@ -197,7 +197,7 @@ async function startServer() {
     try {
         await initializeDatabase();
         app.listen(port, ipAddress, () => {
-            console.log(`Server running at http://13.201.122.255:${port}`);
+            console.log(`Server running at http://13.234.213.40:${port}`);
         });
     } catch (err) {
         console.error('Failed to start server:', err.stack);

@@ -20,14 +20,14 @@ services:
     container_name: Backend-task
     build: ./Backend
     ports:
-      - "3053:3053"
+      - "3098:3098"
     environment:
       DB_USER: postgres
       DB_PASSWORD: admin123
       DB_NAME: new_employee_db
       DB_HOST: postgres
       DB_PORT: 5432
-      PORT: 3053
+      PORT: 3098
       HOST: 0.0.0.0
     depends_on:
       - postgres
